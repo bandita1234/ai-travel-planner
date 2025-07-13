@@ -1,12 +1,14 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity, ImageSourcePropType } from "react-native";
 import React from "react";
 import { Colors } from "@/constants/Colors";
+import { useRouter, type Href } from "expo-router";
 
-const Landing = () => {
+const Landing: React.FC = () => {
+  const router = useRouter();
   return (
     <View>
       <Image
-        source={require("../assets/images/landing.jpeg")}
+        source={require("../assets/images/landing.jpeg") as ImageSourcePropType}
         style={{
           width: "100%",
           height: 520,
@@ -39,9 +41,9 @@ const Landing = () => {
           timeline. From flights to hidden gems, we handle it all — so you can
           enjoy every moment!
         </Text>
-        <View style={styles.button}>
-            <Text style={{color:Colors.WHITE,textAlign:'center',fontFamily:'outfit',fontSize:17}}>Sign In With Google</Text>
-        </View>
+        <TouchableOpacity style={styles.button} onPress={()=>router.push('/auth/sign-in' as Href)}>
+            <Text style={{color:Colors.WHITE,textAlign:'center',fontFamily:'outfit',fontSize:17}}>Get Started</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

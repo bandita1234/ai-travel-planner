@@ -1,12 +1,10 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const SIgnUp = () => {
+export default function Discover() {
   return (
     <View>
-      <Text>SIgnUp</Text>
+      <Text>Discover</Text>
     </View>
   )
 }
-
-export default SIgnUp
