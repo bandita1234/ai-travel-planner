@@ -1,12 +1,16 @@
 import { Stack } from "expo-router";
 import { useFonts } from "expo-font";
 import { ActivityIndicator } from "react-native";
+import { CreateTripContext, TripPlace } from "@/context/CreateTripContext";
+import { useState } from "react";
 
 export default function RootLayout() {
+  const [trip, setTrip] = useState<TripPlace | null>(null);
+
   const [fontsLoaded] = useFonts({
-    'outfit': require("../assets/fonts/Outfit-Regular.ttf"),
-    'outfit-medium': require("../assets/fonts/Outfit-Medium.ttf"),
-    'outfit-bold': require("../assets/fonts/Outfit-Bold.ttf"),
+    outfit: require("../assets/fonts/Outfit-Regular.ttf"),
+    "outfit-medium": require("../assets/fonts/Outfit-Medium.ttf"),
+    "outfit-bold": require("../assets/fonts/Outfit-Bold.ttf"),
   });
 
   if (!fontsLoaded) {
@@ -14,8 +18,10 @@ export default function RootLayout() {
   }
 
   return (
-    <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-    </Stack>
+    <CreateTripContext.Provider value={{ trip, setTrip }}>
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      </Stack>
+    </CreateTripContext.Provider>
   );
 }
