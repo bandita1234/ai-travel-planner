@@ -12,4 +12,7 @@ export type TripPlace = {
   lat?: string;
   lon?: string;
   traveler?: TravelerOption | null;
+  startDate?:Date,
+  endDate?:Date,
+  totalNumberOfDays?:number
 };

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Colors } from "@/constants/Colors";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import StartNewTripCard from "@/components/MyTrips/StartNewTripCard";
+import { router } from "expo-router";
 
 type Trip ={
   id:string,
@@ -14,10 +15,10 @@ export default function MyTrips() {
   return (
     <View
       style={{
-        padding: 45,
-        marginTop: 25,
-        backgroundColor: Colors.WHITE,
-        height: "100%",
+        flex: 1,
+        paddingHorizontal: 25,
+        paddingTop: 80,
+        backgroundColor:Colors.WHITE
       }}
     >
       <View
@@ -30,15 +31,18 @@ export default function MyTrips() {
           style={{
             fontSize: 28,
             fontFamily: "outfit-bold",
+            color:Colors.TEXT
           }}
         >
           My Trips
         </Text>
-        <TouchableOpacity onPress={() => console.log("Add new trip!")}>
-          <Ionicons name="add-circle" size={45} color="black" />
+        <TouchableOpacity onPress={() =>router.push("/create-trip/SearchPlaces")}>
+          <Ionicons name="add-circle" size={45} color={Colors.PRIMARY_DARK} />
         </TouchableOpacity>
       </View>
+      <View style={{ marginTop: 40, marginBottom: 30 }}>
       {tripList?.length === 0 ? <StartNewTripCard/> : null}
+      </View>
     </View>
   );
 }

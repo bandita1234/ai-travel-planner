@@ -27,7 +27,7 @@ type SearchScreenNavigationProp = NativeStackNavigationProp<
 type NominatimPlace = {
   place_id: number;
   display_name: string;
-  name:string;
+  name: string;
   lat: string;
   lon: string;
 };
@@ -97,11 +97,11 @@ export default function SearchPlaces() {
     console.log("Selected place:", place);
     setTrip({
       place_name: place.display_name,
-      name:place.name,
+      name: place.name,
       lat: place.lat,
       lon: place.lon,
     });
-    router.push('/create-trip/SelectTraveler')
+    router.push("/create-trip/SelectTraveler");
   };
 
   return (
@@ -150,30 +150,45 @@ const styles = StyleSheet.create({
   container: {
     padding: 25,
     paddingTop: 120,
-    backgroundColor: Colors.WHITE,
     height: "100%",
+    backgroundColor:Colors.WHITE
   },
   inputContainer: {
     flexDirection: "row",
     alignItems: "center",
     borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 8,
-    paddingHorizontal: 10,
+    borderColor: "#ddd",
+    backgroundColor: "#f9f9f9",
+    borderRadius: 14,
+    paddingHorizontal: 15,
+    height: 55,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 2,
+    elevation: 2,
     marginBottom: 20,
   },
+  
 
   input: {
     flex: 1,
-    height: 50,
-  },
+    fontSize: 16,
+    fontFamily: "outfit",
+    color: "#333",
+  },  
 
   clearIcon: {
     marginLeft: 8,
+    padding:5
   },
   placeText: {
-    paddingVertical: 10,
+    paddingVertical: 12,
+    paddingHorizontal: 8,
     borderBottomWidth: 1,
-    borderBottomColor: "#eee",
+    borderBottomColor: "#f0f0f0",
+    fontSize: 15,
+    fontFamily: "outfit-medium",
+    color: "#444",
   },
 });

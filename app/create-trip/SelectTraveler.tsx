@@ -1,6 +1,6 @@
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigation } from "expo-router";
+import { useNavigation, useRouter } from "expo-router";
 import { Colors } from "@/constants/Colors";
 import { SelectTravelerList } from "@/constants/Options";
 import OptionsCard from "@/components/CreateTrip/OptionsCard";
@@ -9,11 +9,11 @@ import { TravelerOption } from "@/types";
 
 export default function SelectTraveler() {
   const navigation = useNavigation();
+  const router = useRouter();
   const [selectedTraveler, setSelectedTraveler] =
     useState<TravelerOption | null>(null);
 
   const context = useContext(CreateTripContext);
-
   if (!context) throw new Error("Context not found");
 
   const { trip, setTrip } = context;
@@ -43,6 +43,7 @@ export default function SelectTraveler() {
         style={{
           fontSize: 30,
           fontFamily: "outfit-bold",
+          color: Colors.TEXT,
           marginTop: 30,
         }}
       >
@@ -52,8 +53,9 @@ export default function SelectTraveler() {
       <Text
         style={{
           fontSize: 18,
-          fontFamily: "outfit-bold",
-          marginTop: 20,
+          fontFamily: "outfit-medium",
+          color: Colors.TEXT_SECONDARY,
+          marginTop: 10,
         }}
       >
         Pick who’s going with you!
@@ -69,6 +71,7 @@ export default function SelectTraveler() {
         )}
         contentContainerStyle={{ paddingTop: 20, paddingBottom: 100 }}
       />
+
       <View
         style={{
           position: "absolute",
@@ -78,14 +81,24 @@ export default function SelectTraveler() {
         }}
       >
         <TouchableOpacity
-         disabled={!selectedTraveler}
+          disabled={!selectedTraveler}
           style={{
-            padding: 20,
-            backgroundColor: selectedTraveler ? Colors.PRIMARY : "#ccc",
-            borderRadius: 20,
+            padding: 18,
+            backgroundColor: selectedTraveler ? Colors.BUTTON_PRIMARY : Colors.BUTTON_DISABLED,
+            borderRadius: 16,
           }}
+          onPress={() => router.push("/create-trip/SelectDates")}
         >
-          <Text style={{ color: Colors.WHITE, textAlign: "center" }}>
+          <Text
+            style={{
+              color: selectedTraveler
+                ? Colors.BUTTON_TEXT_PRIMARY
+                : Colors.BUTTON_TEXT_DISABLED,
+              fontFamily: "outfit-bold",
+              fontSize: 16,
+              textAlign: "center",
+            }}
+          >
             Continue
           </Text>
         </TouchableOpacity>

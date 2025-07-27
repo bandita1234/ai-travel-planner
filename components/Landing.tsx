@@ -3,6 +3,10 @@ import React from "react";
 import { Colors } from "@/constants/Colors";
 import { useRouter, type Href } from "expo-router";
 
+export const options = {
+  headerShown: false,
+};
+
 const Landing: React.FC = () => {
   const router = useRouter();
   return (
@@ -23,6 +27,7 @@ const Landing: React.FC = () => {
             textAlign: "center",
             marginTop: 10,
             marginBottom: 20,
+            color:Colors.TEXT
           }}
         >
           AI Travel Planner
@@ -62,7 +67,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontFamily: "outfit",
     textAlign: "center",
-    color: Colors.GRAY,
+    color: '#6e5f91',
     marginBottom: 15,
     lineHeight: 24,
   },

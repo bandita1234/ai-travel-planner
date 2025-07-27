@@ -6,65 +6,72 @@ import { useRouter } from "expo-router";
 
 export default function StartNewTripCard() {
   const router = useRouter();
+
   return (
     <View
       style={{
-        padding: 15,
-        marginTop: 50,
-        display: "flex",
+        paddingHorizontal: 25,
+        paddingVertical: 40,
+        marginTop: 25,
         alignItems: "center",
+        backgroundColor: Colors.CARD,
+        borderRadius: 20,
+        shadowColor: Colors.SHADOW,
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 6,
+        elevation: 3,
+        width: "100%",
       }}
     >
-      <Ionicons name="location-sharp" size={34} color="black" />
+      <Ionicons name="location-sharp" size={36} color={Colors.PRIMARY_DARK} />
+
       <Text
         style={{
-          fontSize: 18,
-          fontFamily: "outfit-medium",
+          fontSize: 20,
+          fontFamily: "outfit-bold",
           textAlign: "center",
           marginTop: 20,
+          color: Colors.TEXT,
         }}
       >
         No Trips Yet? Let’s Get Exploring!
       </Text>
 
-      <View>
+      <Text
+        style={{
+          fontSize: 16,
+          fontFamily: "outfit",
+          textAlign: "center",
+          color: "#4A4A4A", // darker neutral tone for better readability
+          marginTop: 20,
+          lineHeight: 22,
+        }}
+      >
+        The world is waiting for you. Plan your next trip and make it
+        unforgettable!
+      </Text>
+
+      <TouchableOpacity
+        onPress={() => router.push("/create-trip/SearchPlaces")}
+        style={{
+          paddingVertical: 15,
+          paddingHorizontal: 30,
+          marginTop: 40,
+          backgroundColor: Colors.PRIMARY,
+          borderRadius: 16,
+        }}
+      >
         <Text
           style={{
-            fontSize: 18,
-            fontFamily: "outfit",
-            textAlign: "center",
-            color: Colors.GRAY,
-            marginTop: 30,
+            color: Colors.BUTTON_TEXT_PRIMARY,
+            fontFamily: "outfit-bold",
+            fontSize: 16,
           }}
         >
-          The world is waiting for you. Plan your next trip and make it
-          unforgettable!
+          Start a New Trip
         </Text>
-      </View>
-      <View>
-        <TouchableOpacity
-          onPress={()=>router.push("/create-trip/SearchPlaces")}
-          style={{
-            paddingVertical: 15,
-            paddingHorizontal: 25,
-            marginTop: 50,
-            backgroundColor: Colors.PRIMARY,
-            borderRadius: 20,
-            alignItems: "center",
-          }}
-        >
-          <Text
-            style={{
-              color: Colors.WHITE,
-              textAlign: "center",
-              fontFamily: "outfit-medium",
-              fontSize: 16,
-            }}
-          >
-            Start a new Trip
-          </Text>
-        </TouchableOpacity>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 }

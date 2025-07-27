@@ -1,31 +1,30 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
- */
-
-const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
-
 export const Colors = {
+  PRIMARY: "#9F7AEA",         // Lavender Purple
+  PRIMARY_LIGHT: "#E9D8FD",   // Soft Lavender
+  PRIMARY_DARK: "#6C3FC2",
   WHITE:"#fff",
-  PRIMARY:"#000",
-  GRAY:"#7d7d7d",
-  LIGHT_GRAY:"#f2f2f2",
+  ACCENT: "#B794F4",          // Light Lilac
 
-  light: {
-    text: '#11181C',
-    background: '#fff',
-    tint: tintColorLight,
-    icon: '#687076',
-    tabIconDefault: '#687076',
-    tabIconSelected: tintColorLight,
-  },
-  dark: {
-    text: '#ECEDEE',
-    background: '#151718',
-    tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
-    tabIconSelected: tintColorDark,
-  },
+  BACKGROUND: "#F7F4FF",      // App Background
+  CARD: "#F1F1F1",            // Card BG
+  TEXT: "#322659",            // Heading / Body
+  TEXT_SECONDARY: "#6B46C1",  // Subtitle
+  GRAY: "#CBD5E0",            // Border Gray
+  LIGHT_GRAY: "#EDF2F7",      // Input BG
+
+  BORDER: "#D6BCFA",          // Border Purple
+  SHADOW: "rgba(159, 122, 234, 0.15)",
+
+  // Buttons
+  BUTTON_PRIMARY: "#9F7AEA",
+  BUTTON_SECONDARY: "#E9D8FD",
+  BUTTON_TEXT_PRIMARY: "#FFFFFF",
+  BUTTON_TEXT_SECONDARY: "#9F7AEA",
+  BUTTON_DISABLED: "#E2E8F0",
+  BUTTON_TEXT_DISABLED: "#A0AEC0",
+
+  // Alerts
+  SUCCESS: "#48BB78",
+  WARNING: "#ED8936",
+  ERROR: "#F56565",
 };

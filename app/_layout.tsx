@@ -1,7 +1,8 @@
 import { Stack } from "expo-router";
 import { useFonts } from "expo-font";
 import { ActivityIndicator } from "react-native";
-import { CreateTripContext, TripPlace } from "@/context/CreateTripContext";
+import { CreateTripContext } from "@/context/CreateTripContext";
+import { TripPlace } from "@/types";
 import { useState } from "react";
 
 export default function RootLayout() {
@@ -19,7 +20,10 @@ export default function RootLayout() {
 
   return (
     <CreateTripContext.Provider value={{ trip, setTrip }}>
-      <Stack>
+      <Stack
+      screenOptions={{
+        headerShown: false,
+      }}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
     </CreateTripContext.Provider>
