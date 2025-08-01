@@ -4,6 +4,10 @@ import { Redirect } from "expo-router";
 import { useEffect } from "react";
 import { Text, View } from "react-native";
 
+if (typeof global.structuredClone !== 'function') {
+  global.structuredClone = (obj: any) => JSON.parse(JSON.stringify(obj));
+}
+
 export default function Index() {
   const user = auth.currentUser;
 

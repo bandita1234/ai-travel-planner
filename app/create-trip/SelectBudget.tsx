@@ -1,22 +1,35 @@
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigation, useRouter } from "expo-router";
-import { Colors } from "@/constants/Colors";
-import { SelectTravelerList } from "@/constants/Options";
 import OptionsCard from "@/components/CreateTrip/OptionsCard";
+import { SelectBudgetOptions } from "@/constants/Options";
+import { BudgetOption } from "@/types";
+import { Colors } from "@/constants/Colors";
 import { CreateTripContext } from "@/context/CreateTripContext";
-import { TravelerOption } from "@/types";
 
-export default function SelectTraveler() {
+export default function SelectBudget() {
   const navigation = useNavigation();
+
   const router = useRouter();
-  const [selectedTraveler, setSelectedTraveler] =
-    useState<TravelerOption | null>(null);
+
+  const [selectedBudget, setSelectedBudget] = useState<BudgetOption | null>(
+    null
+  );
 
   const context = useContext(CreateTripContext);
   if (!context) throw new Error("Context not found");
 
   const { trip, setTrip } = context;
+
+  const handleBudgetContinue = () => {
+    if (selectedBudget) {
+      setTrip({
+        ...trip,
+        budget: selectedBudget?.title,
+      });
+    }
+    router.push("/create-trip/ReviewTrip");
+  };
 
   useEffect(() => {
     navigation.setOptions({
@@ -25,12 +38,6 @@ export default function SelectTraveler() {
       headerTitle: "",
     });
   }, [navigation]);
-
-  useEffect(() => {
-    if(selectedTraveler){
-      setTrip({ ...trip, traveler: selectedTraveler });
-    }
-  }, [selectedTraveler]);
 
   return (
     <View
@@ -49,7 +56,7 @@ export default function SelectTraveler() {
           marginTop: 30,
         }}
       >
-       Who’s joining the trip?
+        What’s Your Budget?
       </Text>
 
       <Text
@@ -60,18 +67,18 @@ export default function SelectTraveler() {
           marginTop: 10,
         }}
       >
-        Pick who’s going with you!
+        Select the spending level that best fits your lifestyle
       </Text>
 
       <FlatList
-        data={SelectTravelerList}
+        data={SelectBudgetOptions}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => setSelectedTraveler(item)}>
-            <OptionsCard option={item} selectedOption={selectedTraveler} />
+          <TouchableOpacity onPress={() => setSelectedBudget(item)}>
+            <OptionsCard option={item} selectedOption={selectedBudget} />
           </TouchableOpacity>
         )}
-        contentContainerStyle={{ paddingTop: 20, paddingBottom: 100 }}
+        contentContainerStyle={{ paddingTop: 30, paddingBottom: 100 }}
       />
 
       <View
@@ -83,17 +90,19 @@ export default function SelectTraveler() {
         }}
       >
         <TouchableOpacity
-          disabled={!selectedTraveler}
+          disabled={!selectedBudget}
           style={{
             padding: 18,
-            backgroundColor: selectedTraveler ? Colors.BUTTON_PRIMARY : Colors.BUTTON_DISABLED,
+            backgroundColor: selectedBudget
+              ? Colors.BUTTON_PRIMARY
+              : Colors.BUTTON_DISABLED,
             borderRadius: 16,
           }}
-          onPress={() => router.push("/create-trip/SelectDates")}
+          onPress={() => handleBudgetContinue()}
         >
           <Text
             style={{
-              color: selectedTraveler
+              color: selectedBudget
                 ? Colors.BUTTON_TEXT_PRIMARY
                 : Colors.BUTTON_TEXT_DISABLED,
               fontFamily: "outfit-bold",

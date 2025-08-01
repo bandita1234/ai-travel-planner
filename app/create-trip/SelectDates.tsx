@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
-import { View, Text, TouchableOpacity, ToastAndroid } from "react-native";
-import { useNavigation } from "expo-router";
+import React, { useContext, useEffect, useState } from "react";
+import { View, Text, TouchableOpacity } from "react-native";
+import { useNavigation, useRouter } from "expo-router";
 import CalendarPicker from "react-native-calendar-picker";
 import { Colors } from "@/constants/Colors";
 import moment from "moment";
@@ -8,6 +8,8 @@ import { CreateTripContext } from "@/context/CreateTripContext";
 
 export default function SelectDates() {
   const navigation = useNavigation();
+  const router = useRouter();
+
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(
     null
   );
@@ -18,14 +20,6 @@ export default function SelectDates() {
   
     const { trip, setTrip } = context;
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerShown: true,
-      headerTransparent: true,
-      headerTitle: "",
-    });
-  }, [navigation]);
-
   const onDateChange = (date: Date, type: string) => {
     if (type === "END_DATE") {
       setSelectedEndDate(date);
@@ -34,7 +28,6 @@ export default function SelectDates() {
       setSelectedEndDate(null);
     }
   };
-  
 
   const handleDateSelect = () => {
     if (selectedStartDate && selectedEndDate) {
@@ -46,17 +39,26 @@ export default function SelectDates() {
         endDate:selectedEndDate,
         totalNumberOfDays:totalDays+1
       })
+      router.push('/create-trip/SelectBudget')
     }
   };  
 
   const isButtonDisabled = !selectedStartDate || !selectedEndDate;
 
   useEffect(() => {
-    if (selectedStartDate && selectedEndDate) {
-      console.log("Start:", selectedStartDate);
-      console.log("End:", selectedEndDate);
-    }
-  }, [selectedStartDate, selectedEndDate]);
+    navigation.setOptions({
+      headerShown: true,
+      headerTransparent: true,
+      headerTitle: "",
+    });
+  }, [navigation]);
+
+  // useEffect(() => {
+  //   if (selectedStartDate && selectedEndDate) {
+  //     console.log("Start:", selectedStartDate);
+  //     console.log("End:", selectedEndDate);
+  //   }
+  // }, [selectedStartDate, selectedEndDate]);
   
 
   return (
@@ -95,15 +97,6 @@ export default function SelectDates() {
           fontFamily: "outfit",
           color: "#333",
         }}
-        // dayLabelsWrapper={{
-        //   borderTopWidth: 0,
-        //   borderBottomWidth: 0,
-        // }}
-        // customDatesStyles={(date) => ({
-        //   textStyle: {
-        //     fontFamily: "outfit",
-        //   },
-        // })}
       />
       <View
         style={{

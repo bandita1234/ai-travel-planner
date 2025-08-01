@@ -1,15 +1,15 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { Colors } from "@/constants/Colors";
-import { TravelerOption } from "@/types";
+import { OptionBase } from "@/types";
 
 type Props = {
-  option: TravelerOption;
-  selectedTraveler: TravelerOption | null;
+  option: OptionBase;
+  selectedOption: OptionBase | null;
 };
 
-export default function OptionsCard({ option, selectedTraveler }: Props) {
-  const isSelected = selectedTraveler?.id === option.id;
+export default function OptionsCard({ option, selectedOption }: Props) {
+  const isSelected = selectedOption?.id === option.id;
 
   return (
     <View style={[styles.card, isSelected && styles.selectedCard]}>

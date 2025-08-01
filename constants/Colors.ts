@@ -5,7 +5,7 @@ export const Colors = {
   WHITE:"#fff",
   ACCENT: "#B794F4",          // Light Lilac
 
-  BACKGROUND: "#F7F4FF",      // App Background
+  // BACKGROUND: "#F7F4FF",      // App Background
   CARD: "#F1F1F1",            // Card BG
   TEXT: "#322659",            // Heading / Body
   TEXT_SECONDARY: "#6B46C1",  // Subtitle
